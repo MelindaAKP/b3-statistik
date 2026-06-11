@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang='sv'>
 <head>
-<meta charset="UTF-8">
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>B3 Rekryteringsstatistik</title>
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+<script src='https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'></script>
+<style>
+body{background:#f0f4f8;font-family:'Segoe UI',sans-serif}
+.navbar{background:#1a2236}
+.card{border:none;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.metric-card{text-align:center;padding:2rem 1rem}
+.metric-value{font-size:3rem;font-weight:700;color:#1a2236}
+.metric-unit{font-size:1rem;color:#6c757d;margin-top:-8px}
+.metric-label{font-size:.9rem;color:#6c757d;margin-top:.5rem;text-transform:uppercase;letter-spacing:.05em}
+table thead{background:#1a2236;color:white}
+.period-badge{background:#e8f0fe;color:#1a2236;border-radius:8px;padding:.3rem .8rem;font-size:.85rem;font-weight:600}
+.badge-b3{background:#e8f0fe;color:#1a2236;font-size:.8rem;font-weight:600;padding:.2rem .6rem;border-radius:6px}
+</style>
 </head>
 <body>
-<p>Laddas inom kort...</p>
+<nav class='navbar navbar-dark px-4 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2'>
+  <span class='text-white fw-bold fs-5'>B3 Rekryteringsstatistik</span>
+  <div class='d-flex align-items-center gap-3 flex-wrap'>
+    <span class='period-badge'>2026-01-01 - 2026-06-11</span>
+    <span class='text-white-50 small'>Uppdaterad: 2026-06-11 18:19</span>
+  </div>
+</nav>
+<div class='container-fluid py-4 px-4'>
+  <div class='row g-4 mb-4'>
+    <div class='col-6 col-md-3'><div class='card metric-card'><div class='metric-value'>4037</div><div class='metric-unit'>ansokningar</div><div class='metric-label'>Totalt</div></div></div>
+    <div class='col-6 col-md-3'><div class='card metric-card'><div class='metric-value'>19</div><div class='metric-unit'>anstallda</div><div class='metric-label'>Anstallda</div></div></div>
+    <div class='col-6 col-md-3'><div class='card metric-card' style='border-top:4px solid #4f8ef7'><div class='metric-value text-primary'>49.7</div><div class='metric-unit'>dagar (genomsnitt)</div><div class='metric-label'>Time to Hire</div></div></div>
+    <div class='col-6 col-md-3'><div class='card metric-card' style='border-top:4px solid #f7a24f'><div class='metric-value' style='color:#f7a24f'>36.1</div><div class='metric-unit'>dagar (genomsnitt)</div><div class='metric-label'>Time to Pipe</div></div></div>
+  </div>
+  <div class='row g-4 mb-4'>
+    <div class='col-md-7'><div class='card p-4 h-100'><h6 class='fw-bold text-secondary mb-3 text-uppercase'>Ansokningar per manad</h6><canvas id='monthlyChart' height='100'></canvas></div></div>
+    <div class='col-md-5'><div class='card p-4 h-100'><h6 class='fw-bold text-secondary mb-3 text-uppercase'>B3-bolagsaktivitet</h6><canvas id='b3Chart' height='160'></canvas></div></div>
+  </div>
+  <div class='card p-4'>
+    <h6 class='fw-bold text-secondary mb-3 text-uppercase'>Anstallda kandidater</h6>
+    <div class='table-responsive'><table class='table table-hover align-middle mb-0'><thead><tr><th>Namn</th><th>Tjanst</th><th>Sokte</th><th>Anstalld</th><th class='text-end'>Dagar</th></tr></thead><tbody><tr><td class='fw-semibold'>David Salomonsson</td><td><span class='badge-b3'>Systemutvecklare & Tekniska Ledare - B3  i Linköping</span></td><td>2026-05-04</td><td>2026-06-09</td><td class='text-end fw-bold'>35 d</td></tr><tr><td class='fw-semibold'>Stephanie del Pilar</td><td><span class='badge-b3'>Key Account Manager</span></td><td>2026-04-27</td><td>2026-06-04</td><td class='text-end fw-bold'>37 d</td></tr><tr><td class='fw-semibold'>Nicklas Steen</td><td><span class='badge-b3'>Fullstackutvecklare med passion för AI till B3 i Linköping</span></td><td>2026-04-15</td><td>2026-06-09</td><td class='text-end fw-bold'>54 d</td></tr><tr><td class='fw-semibold'>Rodrigo Moraga Isla</td><td><span class='badge-b3'>Projektledare / Produktägare för AI-accelererade team</span></td><td>2026-04-07</td><td>2026-06-02</td><td class='text-end fw-bold'>56 d</td></tr><tr><td class='fw-semibold'>Sara Svanberg</td><td><span class='badge-b3'>Teknisk Projektledare</span></td><td>2026-03-27</td><td>2026-05-05</td><td class='text-end fw-bold'>38 d</td></tr><tr><td class='fw-semibold'>Stefan Linder</td><td><span class='badge-b3'>Seniora konsulter inom bank och försäkring till B3 Financial Consulting</span></td><td>2026-03-12</td><td>2026-04-07</td><td class='text-end fw-bold'>25 d</td></tr><tr><td class='fw-semibold'>Christoffer Näsberg</td><td><span class='badge-b3'>Systemutvecklare till B3 Vibe</span></td><td>2026-02-28</td><td>2026-05-22</td><td class='text-end fw-bold'>82 d</td></tr><tr><td class='fw-semibold'>Sebastian Maghsoudi</td><td><span class='badge-b3'>Systemutvecklare & Tekniska Ledare - B3  i Linköping</span></td><td>2026-02-27</td><td>2026-03-24</td><td class='text-end fw-bold'>24 d</td></tr><tr><td class='fw-semibold'>Supriya Nanda</td><td><span class='badge-b3'>Konsult Lumera, Liv & Pension</span></td><td>2026-02-25</td><td>2026-03-13</td><td class='text-end fw-bold'>15 d</td></tr><tr><td class='fw-semibold'>Johan Rizkallah</td><td><span class='badge-b3'>Key Account Manager</span></td><td>2026-02-24</td><td>2026-04-08</td><td class='text-end fw-bold'>43 d</td></tr><tr><td class='fw-semibold'>simon b</td><td><span class='badge-b3'>Backendutvecklare .NET/Azure till prisbelönt digitalbyrå</span></td><td>2026-02-15</td><td>2026-02-26</td><td class='text-end fw-bold'>11 d</td></tr><tr><td class='fw-semibold'>Malin Seppälä</td><td><span class='badge-b3'>Power BI Consultant</span></td><td>2026-02-09</td><td>2026-06-05</td><td class='text-end fw-bold'>115 d</td></tr><tr><td class='fw-semibold'>Lisa Petersson Borg</td><td><span class='badge-b3'>Konsult inom Pega – Business Analyst och Operativ Managementkonsult</span></td><td>2026-02-03</td><td>2026-03-30</td><td class='text-end fw-bold'>55 d</td></tr><tr><td class='fw-semibold'>Andreas Persson</td><td><span class='badge-b3'>Bli en del av vårt team inom #nätverk och #säkerhet!</span></td><td>2026-01-20</td><td>2026-02-26</td><td class='text-end fw-bold'>36 d</td></tr><tr><td class='fw-semibold'>Ario Najafian</td><td><span class='badge-b3'>eHälsokonsult med fokus på COSMIC</span></td><td>2026-01-20</td><td>2026-04-13</td><td class='text-end fw-bold'>83 d</td></tr><tr><td class='fw-semibold'>Iman Ismael</td><td><span class='badge-b3'>C/C++-utvecklare till B3 Next</span></td><td>2026-01-15</td><td>2026-04-16</td><td class='text-end fw-bold'>90 d</td></tr><tr><td class='fw-semibold'>Iman Ismael</td><td><span class='badge-b3'>C#/.Net-utvecklare till B3 Next</span></td><td>2026-01-15</td><td>2026-04-02</td><td class='text-end fw-bold'>76 d</td></tr><tr><td class='fw-semibold'>Sandra Gellerborn</td><td><span class='badge-b3'>eHälsokonsult med fokus på COSMIC</span></td><td>2026-01-12</td><td>2026-02-24</td><td class='text-end fw-bold'>42 d</td></tr><tr><td class='fw-semibold'>Helen Ferm</td><td><span class='badge-b3'>eHälsokonsult med fokus på COSMIC</span></td><td>2026-01-05</td><td>2026-02-02</td><td class='text-end fw-bold'>27 d</td></tr></tbody></table></div>
+  </div>
+</div>
+<script>
+const monthly={"2026-01": 542, "2026-02": 678, "2026-03": 731, "2026-04": 921, "2026-05": 885, "2026-06": 280};
+const b3data={"Okant": 3224, "B3 Next": 204, "B3 i": 151, "B3 Health": 125, "B3 Mobile": 119, "B3 Financial": 49, "B3 Skilled": 45, "B3 Vibe": 34, "B3 Now": 32, "B3  i": 28};
+const colors=['#4f8ef7','#f7a24f','#4fcf8e','#f74f8e','#a24ff7','#f7e44f','#4ff7f0','#f76a4f','#8ef74f','#4f4ff7'];
+new Chart(document.getElementById('monthlyChart'),{type:'bar',data:{labels:Object.keys(monthly),datasets:[{label:'Ansokningar',data:Object.values(monthly),backgroundColor:'#4f8ef7',borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+new Chart(document.getElementById('b3Chart'),{type:'doughnut',data:{labels:Object.keys(b3data),datasets:[{data:Object.values(b3data),backgroundColor:colors,borderWidth:2}]},options:{plugins:{legend:{position:'right',labels:{font:{size:12}}}}}});
+</script>
 </body>
 </html>
