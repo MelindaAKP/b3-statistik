@@ -1,0 +1,23 @@
+name: Uppdatera B3 statistik
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests -q
+      - run: python generera_html.py
+      - run: |
+          git config --global user.email "stats-bot@b3.se"
+          git config --global user.name "B3 Stats Bot"
+          git add index.html
+          git diff --staged --quiet || git commit -m "Uppdaterar statistik $(date '+%Y-%m-%d')"
+          git push
