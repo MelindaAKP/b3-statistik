@@ -23,13 +23,13 @@ table thead{background:#1a2236;color:white}
 <nav class='navbar navbar-dark px-4 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2'>
   <span class='text-white fw-bold fs-5'>B3 Rekryteringsstatistik</span>
   <div class='d-flex align-items-center gap-3 flex-wrap'>
-    <span class='period-badge'>2026-01-01 - 2026-06-24</span>
-    <span class='text-white-50 small'>Uppdaterad: 2026-06-24 12:39</span>
+    <span class='period-badge'>2026-01-01 - 2026-06-25</span>
+    <span class='text-white-50 small'>Uppdaterad: 2026-06-25 13:31</span>
   </div>
 </nav>
 <div class='container-fluid py-4 px-4'>
   <div class='row g-4 mb-4'>
-    <div class='col-6 col-md-3'><div class='card metric-card'><div class='metric-value'>4435</div><div class='metric-unit'>ansokningar</div><div class='metric-label'>Totalt</div></div></div>
+    <div class='col-6 col-md-3'><div class='card metric-card'><div class='metric-value'>4460</div><div class='metric-unit'>ansokningar</div><div class='metric-label'>Totalt</div></div></div>
     <div class='col-6 col-md-3'><div class='card metric-card'><div class='metric-value'>20</div><div class='metric-unit'>anstallda</div><div class='metric-label'>Anstallda</div></div></div>
     <div class='col-6 col-md-3'><div class='card metric-card' style='border-top:4px solid #4f8ef7'><div class='metric-value text-primary'>53.5</div><div class='metric-unit'>dagar (genomsnitt)</div><div class='metric-label'>Time to Hire</div></div></div>
     <div class='col-6 col-md-3'><div class='card metric-card' style='border-top:4px solid #f7a24f'><div class='metric-value' style='color:#f7a24f'>32.8</div><div class='metric-unit'>dagar (genomsnitt)</div><div class='metric-label'>Time to Pipe</div></div></div>
@@ -44,8 +44,8 @@ table thead{background:#1a2236;color:white}
   </div>
 </div>
 <script>
-const monthly={"2026-01": 542, "2026-02": 674, "2026-03": 731, "2026-04": 921, "2026-05": 885, "2026-06": 682};
-const b3data={"Okant": 3562, "B3 Next": 225, "B3 i": 165, "B3 Mobile": 129, "B3 Health": 125, "B3 Financial": 52, "B3 Skilled": 51, "B3 Now": 35, "B3 Vibe": 34, "B3  i": 30};
+const monthly={"2026-01": 542, "2026-02": 674, "2026-03": 731, "2026-04": 921, "2026-05": 885, "2026-06": 707};
+const b3data={"Okant": 3581, "B3 Next": 228, "B3 i": 165, "B3 Mobile": 130, "B3 Health": 125, "B3 Financial": 54, "B3 Skilled": 51, "B3 Now": 35, "B3 Vibe": 34, "B3  i": 30};
 const colors=['#4f8ef7','#f7a24f','#4fcf8e','#f74f8e','#a24ff7','#f7e44f','#4ff7f0','#f76a4f','#8ef74f','#4f4ff7'];
 new Chart(document.getElementById('monthlyChart'),{type:'bar',data:{labels:Object.keys(monthly),datasets:[{label:'Ansokningar',data:Object.values(monthly),backgroundColor:'#4f8ef7',borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
 new Chart(document.getElementById('b3Chart'),{type:'doughnut',data:{labels:Object.keys(b3data),datasets:[{data:Object.values(b3data),backgroundColor:colors,borderWidth:2}]},options:{plugins:{legend:{position:'right',labels:{font:{size:12}}}}}});
